@@ -1,4 +1,4 @@
-import {resetLoginForm} from './loginForm'
+import {resetLoginForm} from './loginFormActions'
 
 
 export const setCurrentUser = user => {
