@@ -13,8 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
-import {updateLoginForm} from '../actions/loginForm'
-import { login } from '../actions/currentUser'
+import {updateLoginForm} from '../actions/loginFormActions'
+import { login } from '../actions/currentUserActions'
 
 function Copyright() {
   return (
