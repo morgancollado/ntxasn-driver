@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm'
 import { Route, withRouter, Switch} from 'react-router-dom'
 import {getCurrentUser} from './actions/currentUserActions'
 import Home from './components/Home'
+import NavBar from './components/NavBar'
 
 class App extends Component {
   componentDidMount(){
@@ -11,9 +12,12 @@ class App extends Component {
   }
   
   render(){
+    const {loggedIn, rides} = this.props
    return(
      <div>
+       {loggedIn ? <NavBar user={this.props.loggedIn} location={this.props.loggedIn} history={this.props.history}/> : null}
        <Switch>
+         
          <Route exact path='/login' component={LoginForm}/>
          <Route exact path='/' component={Home}/>
 
