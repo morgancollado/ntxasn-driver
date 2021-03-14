@@ -13,6 +13,13 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {updateProfileForm} from '../actions/updateProfileActions'
 import { update } from '../actions/currentUserActions'
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+
+
 
 function Copyright() {
   return (
@@ -115,6 +122,21 @@ const handleSubmit = event =>{
                 type="tel"
                 value={updateFormData.phone_number} 
               />
+            </Grid>
+            <Grid>
+                <InputLabel>Available Days</InputLabel>
+                <Select
+                    value={updateFormData.availability_days}
+                    onChange={handleChange}
+                >
+                    <MenuItem value={"Monday"}> Monday</MenuItem>
+                    <MenuItem value={"Tuesday"}> Tuesday</MenuItem>
+                    <MenuItem value={"Wednesday"}> Wednesday</MenuItem>
+                    <MenuItem value={"Thursday"}> Thursday</MenuItem>
+                    <MenuItem value={"Friday"}> Friday</MenuItem>
+                    <MenuItem value={"Saturday"}> Saturday</MenuItem>
+                    <MenuItem value={"Sunday"}> Sunday</MenuItem>
+                </Select>
             </Grid>
           </Grid>
           <Button
