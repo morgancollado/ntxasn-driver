@@ -14,6 +14,13 @@ export const clearCurrentUser = () => {
     }
 }
 
+export const updateProfileConfirm = (user) => {
+    return {
+        type: "UPDATE_PROFILE",
+        user: user
+    }
+}
+
 export const login = (credentials, history) =>{
     return dispatch => {
         return fetch("http://localhost:3000/api/v1/login", {
@@ -67,6 +74,33 @@ export const getCurrentUser = () =>{
                 alert(user.error)
             }else {
                 dispatch(setCurrentUser(user.data))
+            }
+        })
+
+    }
+
+}
+
+export const update= (userData, history) => {
+    return dispatch => {
+        const info = {
+            user: userData
+        }
+        return fetch(`http://localhost:3000/api/v1/users/${userData.id}`, {
+            credentials: "include",
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(info)
+        })
+        .then(r => r.json())
+        .then(resp => {
+            if (resp.error){
+                alert(resp.error)
+            } else {
+                dispatch(updateProfileConfirm(resp.data))
+                history.push('/')
             }
         })
 
