@@ -5,6 +5,8 @@ import { Route, withRouter, Switch} from 'react-router-dom'
 import {getCurrentUser} from './actions/currentUserActions'
 import Home from './components/Home'
 import NavBar from './components/NavBar'
+import RidesContainer from './containers/RidesContainer'
+import UpdateProfileForm from './components/UpdateProfileForm'
 
 class App extends Component {
   componentDidMount(){
@@ -19,7 +21,8 @@ class App extends Component {
        <Switch>
          
          <Route exact path='/login' component={LoginForm}/>
-         <Route exact path='/' component={Home}/>
+         <Route exact path='/' render={() => loggedIn ? <RidesContainer/> : <Home/>}/>
+         <Route exact path='/users/edit' component={UpdateProfileForm} />
 
        </Switch>
 
