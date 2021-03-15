@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import {Link} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import EditIcon from '@material-ui/icons/Edit';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -67,7 +67,7 @@ const UpdateProfileForm =({updateFormData, updateProfileForm, update, history })
 
 const handleSubmit = event =>{
     event.preventDefault()
-    update(signupFormData, history)
+    update(updateFormData, history)
 
 }
 
@@ -76,10 +76,10 @@ const handleSubmit = event =>{
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <EditIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Update your Driver Profile
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
