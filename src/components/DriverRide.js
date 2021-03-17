@@ -49,7 +49,7 @@ const MyDriverRide = ({ride}) => {
           Location To: {ride.attributes.location_to}
         </Typography>
         <Typography variant="body2" component="p">
-        Passenger: {ride.attributes.passenger ? ride.attributes.driver.name : "Your Driver information will appear here once a driver is assigned"} 
+        Passenger: {ride.attributes.passenger ? ride.attributes.passenger.name : "Your Driver information will appear here once a driver is assigned"} 
           <br />
           Phone Number: {ride.attributes.passenger ? ride.attributes.passenger.phone_number: "Your Driver information will appear here once a driver is assigned"}
         </Typography>
@@ -59,9 +59,7 @@ const MyDriverRide = ({ride}) => {
         </Typography>
       </CardContent>
       <CardActions>
-      <Link to={`/rides/${ride.id}/edit`}>
-        <Button size="small">Edit or cancel this ride</Button>
-        </Link>
+        <Button size="small">If you cannot make this ride, please contact our Hotline Coordinator</Button>
       </CardActions>
     </Card>
   );
