@@ -6,9 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import store from './store.js'
 import {BrowserRouter as Router} from 'react-router-dom'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router><App /></Router>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Router><App /></Router>
+    </MuiPickersUtilsProvider>
   </Provider>,
   document.getElementById('root')
 );
