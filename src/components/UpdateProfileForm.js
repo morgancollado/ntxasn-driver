@@ -18,6 +18,14 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormLabel from '@material-ui/core/FormLabel';
+
+
+
+
 
 
 
@@ -123,21 +131,49 @@ const handleSubmit = event =>{
                 value={updateFormData.phone_number} 
               />
             </Grid>
-            <Grid>
-                <InputLabel>Available Days</InputLabel>
-                <Select
-                    value={updateFormData.availability_days}
-                    onChange={handleChange}
-                >
-                    <MenuItem value={"Monday"}> Monday</MenuItem>
-                    <MenuItem value={"Tuesday"}> Tuesday</MenuItem>
-                    <MenuItem value={"Wednesday"}> Wednesday</MenuItem>
-                    <MenuItem value={"Thursday"}> Thursday</MenuItem>
-                    <MenuItem value={"Friday"}> Friday</MenuItem>
-                    <MenuItem value={"Saturday"}> Saturday</MenuItem>
-                    <MenuItem value={"Sunday"}> Sunday</MenuItem>
-                </Select>
-            </Grid>
+        <FormControl component="fieldset" className={classes.formControl}>
+          <FormLabel component="legend">Select Available Days</FormLabel>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Monday" />}
+                label="Monday"
+              />
+              <FormControlLabel
+                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Tuesday" />}
+                label="Tuesday"
+              />
+              <FormControlLabel
+                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Wednesday" />}
+                label="Wednesday"
+              />
+          </FormGroup>
+        </FormControl>
+        <FormControl component="fieldset" className={classes.formControl}>
+          <FormLabel component="legend">-</FormLabel>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Thursday" />}
+                label="Thursday"
+              />
+              <FormControlLabel
+                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Friday" />}
+                label="Friday"
+              />
+              <FormControlLabel
+                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Saturday" />}
+                label="Saturday"
+              />
+          </FormGroup>
+        </FormControl>
+        <FormControl component="fieldset" className={classes.formControl}>
+          <FormLabel component="legend">-</FormLabel>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Sunday" />}
+                label="Sunday"
+              />
+          </FormGroup>
+        </FormControl>
           </Grid>
           <Button
             type="submit"
