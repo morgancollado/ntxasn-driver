@@ -5,7 +5,7 @@ export const updateProfileForm = (formData) => {
     }
 }
 
-export const resetSignupForm = () => {
+export const resetProfileForm = () => {
     return {
         type: "RESET_PROFILE_FORM",
     }
