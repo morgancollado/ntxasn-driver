@@ -13,15 +13,12 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {updateProfileForm} from '../actions/updateProfileActions'
 import { update } from '../actions/currentUserActions'
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
+import { TimePicker } from "@material-ui/pickers"
 
 
 
@@ -174,6 +171,11 @@ const handleSubmit = event =>{
               />
           </FormGroup>
         </FormControl>
+          </Grid>
+          <Grid>
+            <TimePicker autoOk label="Hour Availability Lower Limit" value={updateFormData.availability_hours_lower} name="availability_hours_lower" onChange={handleChange}/>
+            <TimePicker autoOk label="Hour Availability Upper Limit" value={updateFormData.availability_hours_lower} name="availability_hours_upper" onChange={handleChange}/>
+
           </Grid>
           <Button
             type="submit"
