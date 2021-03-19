@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
-import {updateProfileForm} from '../actions/updateProfileActions'
+import {updateProfileForm } from '../actions/updateProfileActions'
 import { update } from '../actions/currentUserActions'
 import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -63,11 +63,14 @@ const UpdateProfileForm =({updateFormData, updateProfileForm, update, history })
 
   const handleChange = event => {
     const {name, value } = event.target
-    const updatedFromInfo = {
+    const updatedFormInfo = {
         ...updateFormData,
-        [name]: value
+          attributes: {
+            ...updateFormData.attributes,
+            [name]: value
+          }   
     }
-    updateProfileForm(updatedFromInfo)
+    updateProfileForm(updatedFormInfo)
 }
 
 const handleSubmit = event =>{
@@ -95,10 +98,10 @@ const handleSubmit = event =>{
                 required
                 fullWidth
                 id="name"
-                label="name"
+                label="Name"
                 autoFocus
                 onChange={handleChange}
-                value={updateFormData.name}
+                value={updateFormData.attributes.name}
               />
             </Grid>
             <Grid item xs={12}>
@@ -111,7 +114,7 @@ const handleSubmit = event =>{
                 name="email"
                 autoComplete="email"
                 onChange={handleChange}
-                value={updateFormData.email}
+                value={updateFormData.attributes.email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -125,7 +128,7 @@ const handleSubmit = event =>{
                 autoComplete="phone number"
                 onChange={handleChange}
                 type="tel"
-                value={updateFormData.phone_number} 
+                value={updateFormData.attributes.phone_number} 
               />
             </Grid>
         <FormControl component="fieldset" className={classes.formControl}>
@@ -172,10 +175,11 @@ const handleSubmit = event =>{
           </FormGroup>
         </FormControl>
           </Grid>
+          <br/>
           <Grid>
             <TimePicker autoOk label="Hour Availability Lower Limit" value={updateFormData.availability_hours_lower} name="availability_hours_lower" onChange={handleChange}/>
+            
             <TimePicker autoOk label="Hour Availability Upper Limit" value={updateFormData.availability_hours_lower} name="availability_hours_upper" onChange={handleChange}/>
-
           </Grid>
           <Button
             type="submit"
