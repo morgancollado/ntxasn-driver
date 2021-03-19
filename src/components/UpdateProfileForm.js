@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
-import {updateProfileForm } from '../actions/updateProfileActions'
+import {updateProfileForm,  setProfileForm} from '../actions/updateProfileActions'
 import { update } from '../actions/currentUserActions'
 import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -58,18 +58,23 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-const UpdateProfileForm =({updateFormData, updateProfileForm, update, history })=>  {
+
+const UpdateProfileForm =({updateFormData, updateProfileForm, update, history, currentUser, setProfileForm })=>  {
+  const useUpdateProfileForm = () => {
+    useEffect(()=> {
+      setProfileForm(currentUser.attributes)
+    })
+  }
+
+  useUpdateProfileForm()
   const classes = useStyles();
 
   const handleChange = event => {
     const {name, value } = event.target
     const updatedFormInfo = {
         ...updateFormData,
-          attributes: {
-            ...updateFormData.attributes,
-            [name]: value
-          }   
-    }
+            [name]: value     
+        }
     updateProfileForm(updatedFormInfo)
 }
 
@@ -101,7 +106,7 @@ const handleSubmit = event =>{
                 label="Name"
                 autoFocus
                 onChange={handleChange}
-                value={updateFormData.attributes.name}
+                value={updateFormData.name}
               />
             </Grid>
             <Grid item xs={12}>
@@ -114,7 +119,7 @@ const handleSubmit = event =>{
                 name="email"
                 autoComplete="email"
                 onChange={handleChange}
-                value={updateFormData.attributes.email}
+                value={updateFormData.email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -128,7 +133,7 @@ const handleSubmit = event =>{
                 autoComplete="phone number"
                 onChange={handleChange}
                 type="tel"
-                value={updateFormData.attributes.phone_number} 
+                value={updateFormData.phone_number} 
               />
             </Grid>
         <FormControl component="fieldset" className={classes.formControl}>
@@ -202,8 +207,9 @@ const handleSubmit = event =>{
 const mapStateToProps = state => {
     
     return{
-        updateFormData: state.currentUser
+        currentUser: state.currentUser,
+        updateFormData: state.updateProfile        
     }
  }
 
-export default connect(mapStateToProps, {updateProfileForm, update})(UpdateProfileForm)
+export default connect(mapStateToProps, {updateProfileForm, update, setProfileForm})(UpdateProfileForm)
