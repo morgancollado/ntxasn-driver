@@ -10,3 +10,10 @@ export const resetProfileForm = () => {
         type: "RESET_PROFILE_FORM",
     }
 }
+
+export const setProfileForm = (formData) => {
+    return {
+        type: 'SET_PROFILE_FORM', 
+        formData: formData
+    }
+}

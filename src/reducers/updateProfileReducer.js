@@ -10,9 +10,13 @@ const initialState = {
 const updateProfileReducer = (state = initialState, action) => {
     switch(action.type){
         case "UPDATE_PROFILE_FORM":
+            debugger
+            console.log(action.formData)
             return action.formData
         case "RESET_SIGNUP_FORM":
             return initialState
+        case "SET_PROFILE_FORM":
+            return action.formData
         default: 
             return state
     }
