@@ -63,7 +63,7 @@ const UpdateProfileForm =({updateFormData, updateProfileForm, update, history, c
   const useUpdateProfileForm = () => {
     useEffect(()=> {
       setProfileForm(currentUser.attributes)
-    })
+    }, [])
   }
 
   useUpdateProfileForm()
