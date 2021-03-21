@@ -78,6 +78,15 @@ const UpdateProfileForm =({updateFormData, updateProfileForm, update, history, c
     updateProfileForm(updatedFormInfo)
 }
 
+const handleBoolean = event => {
+  const {name, value } = event.target
+  const updatedFormInfo = {
+    ...updateFormData,
+        [name]: !value
+    }
+    updateProfileForm(updatedFormInfo)
+}
+
 const handleSubmit = event =>{
     event.preventDefault()
     update(updateFormData, history)
@@ -140,15 +149,15 @@ const handleSubmit = event =>{
           <FormLabel component="legend">Select Available Days</FormLabel>
             <FormGroup>
               <FormControlLabel
-                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Monday" />}
+                control={<Checkbox checked={updateFormData.monday} onChange={handleBoolean} name="monday" />}
                 label="Monday"
               />
               <FormControlLabel
-                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Tuesday" />}
+                control={<Checkbox checked={updateFormData.tuesday} onChange={handleBoolean} name="tuesday" />}
                 label="Tuesday"
               />
               <FormControlLabel
-                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Wednesday" />}
+                control={<Checkbox checked={updateFormData.wednesday} onChange={handleBoolean} name="wednesday" />}
                 label="Wednesday"
               />
           </FormGroup>
@@ -157,15 +166,15 @@ const handleSubmit = event =>{
           <FormLabel component="legend">-</FormLabel>
             <FormGroup>
               <FormControlLabel
-                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Thursday" />}
+                control={<Checkbox checked={updateFormData.thursday} onChange={handleBoolean} name="thursday" />}
                 label="Thursday"
               />
               <FormControlLabel
-                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Friday" />}
+                control={<Checkbox checked={updateFormData.friday} onChange={handleBoolean} name="friday" />}
                 label="Friday"
               />
               <FormControlLabel
-                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Saturday" />}
+                control={<Checkbox checked={updateFormData.saturday} onChange={handleBoolean} name="saturday" />}
                 label="Saturday"
               />
           </FormGroup>
@@ -174,7 +183,7 @@ const handleSubmit = event =>{
           <FormLabel component="legend">-</FormLabel>
             <FormGroup>
               <FormControlLabel
-                control={<Checkbox checked={updateFormData.availability_days} onChange={handleChange} name="Sunday" />}
+                control={<Checkbox checked={updateFormData.sunday} onChange={handleBoolean} name="sunday" />}
                 label="Sunday"
               />
           </FormGroup>
