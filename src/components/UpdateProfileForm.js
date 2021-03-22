@@ -79,12 +79,14 @@ const UpdateProfileForm =({updateFormData, updateProfileForm, update, history, c
 }
 
 const handleBoolean = event => {
-  const {name, value } = event.target
+  const {name, checked } = event.target
+  console.log(event.target.checked)
   const updatedFormInfo = {
     ...updateFormData,
-        [name]: !value
+        [name]: checked
     }
     updateProfileForm(updatedFormInfo)
+console.log(event.target.checked)
 }
 
 const handleSubmit = event =>{
