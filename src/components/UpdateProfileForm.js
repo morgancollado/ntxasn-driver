@@ -70,6 +70,7 @@ const UpdateProfileForm =({updateFormData, updateProfileForm, update, history, c
   const classes = useStyles();
 
   const handleChange = event => {
+    
     const {name, value } = event.target
     const updatedFormInfo = {
         ...updateFormData,
@@ -80,13 +81,11 @@ const UpdateProfileForm =({updateFormData, updateProfileForm, update, history, c
 
 const handleBoolean = event => {
   const {name, checked } = event.target
-  console.log(event.target.checked)
   const updatedFormInfo = {
     ...updateFormData,
         [name]: checked
     }
     updateProfileForm(updatedFormInfo)
-console.log(event.target.checked)
 }
 
 const handleSubmit = event =>{
@@ -193,9 +192,30 @@ const handleSubmit = event =>{
           </Grid>
           <br/>
           <Grid>
-            <TimePicker autoOk label="Hour Availability Lower Limit" value={updateFormData.availability_hours_lower} name="availability_hours_lower" onChange={handleChange}/>
-            
-            <TimePicker autoOk label="Hour Availability Upper Limit" value={updateFormData.availability_hours_lower} name="availability_hours_upper" onChange={handleChange}/>
+            <TextField
+                id="availbility_hours_lower"
+                name="availability_hours_lower"
+                onChange={handleChange}
+                label="Availability Lower Limit"
+                type="time"
+                value={updateFormData.availability_hours_lower}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <TextField
+                id="time"
+                name="availability_hours_upper"
+                onChange={handleChange}
+                label="Availability Upper Limit"
+                type="time"
+                value={updateFormData.availability_hours_upper}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
           </Grid>
           <Button
             type="submit"
