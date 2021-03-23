@@ -27,7 +27,7 @@ const NavBar =(props)=> {
       <AppBar position="static" color="secondary">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <NavLink exact activeClassName="active" to='/rides'>My Rides</NavLink>
+            <NavLink exact activeClassName="active" to='/'>My Rides</NavLink>
           </Typography>
           <Typography variant="h6" className={classes.title}>
             <NavLink exact activeClassName="active" to='/users/edit'>Update Profile</NavLink>
