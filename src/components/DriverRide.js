@@ -59,6 +59,7 @@ const MyDriverRide = ({ride}) => {
       </CardContent>
       <CardActions>
         <Button size="small">If you cannot make this ride, please contact our Hotline Coordinator</Button>
+        <Button > Please click here once you have begun this ride.</Button>
       </CardActions>
     </Card>
   );
