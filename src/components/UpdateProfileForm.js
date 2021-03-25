@@ -19,12 +19,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 
-
-
-
-
-
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -197,6 +191,7 @@ const handleSubmit = event =>{
                 onChange={handleChange}
                 label="Availability Lower Limit"
                 type="time"
+                defaultValue={updateFormData.availability_hours_lower}
                 value={updateFormData.availability_hours_lower}
                 className={classes.textField}
                 InputLabelProps={{
@@ -209,6 +204,7 @@ const handleSubmit = event =>{
                 onChange={handleChange}
                 label="Availability Upper Limit"
                 type="time"
+                defaultValue={updateFormData.availability_hours_upper}
                 value={updateFormData.availability_hours_upper}
                 className={classes.textField}
                 InputLabelProps={{
