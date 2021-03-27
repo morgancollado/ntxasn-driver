@@ -5,6 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom'
+
 
 
 const useStyles = makeStyles({
@@ -59,7 +61,12 @@ const MyDriverRide = ({ride}) => {
       </CardContent>
       <CardActions>
         <Button size="small">If you cannot make this ride, please contact our Hotline Coordinator</Button>
-        <Button > Please click here once you have begun this ride.</Button>
+        <Link to={`/rides/${ride.id}/initialpickup`}>
+          <Button> 
+            Please click here once you have begun this ride.
+          </Button>
+        </Link>
+
       </CardActions>
     </Card>
   );
