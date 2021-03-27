@@ -7,6 +7,10 @@ import Home from './components/Home'
 import NavBar from './components/NavBar'
 import RidesContainer from './containers/RidesContainer'
 import UpdateProfileForm from './components/UpdateProfileForm'
+import DriverRidePickUp from './components/DriverRidePickUp'
+import DriverRideClinicDropOff from './components/DriverRideClinicDropOff'
+import DriverRideClinicPickup from './components/DriverRideClinicPickup'
+import DriverRideFinalDropOff from './components/DriverRideFinalDropOff'
 
 class App extends Component {
   componentDidMount(){
@@ -22,7 +26,14 @@ class App extends Component {
          
          <Route exact path='/login' component={LoginForm}/>
          <Route exact path='/' render={() => loggedIn ? <RidesContainer/> : <Home/>}/>
-         <Route exact path='/users/edit' component={UpdateProfileForm} />
+         <Route exact path='/users/edit' component={UpdateProfileForm}/>
+         <Route exact path='/rides/:id/initialpickup' render={(props) => {
+            const ride = rides.find(ride => ride.id === props.match.params.id)
+            return <DriverRidePickUp ride={ride} {...props}/>
+         }}/>
+         <Route exact path='/rides/:id/clinicdropoff' component={DriverRideClinicDropOff}/>
+         <Route exact path='/rides/:id/clinicpickup' component={DriverRideClinicPickup}/>
+         <Route exact path='/rides/:id/finaldropoff' component={DriverRideFinalDropOff}/>
 
        </Switch>
 
