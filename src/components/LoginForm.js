@@ -119,9 +119,6 @@ const handleSubmit = event =>{
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
             </Grid>
             <Grid item>
             </Grid>
