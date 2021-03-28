@@ -11,6 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import {connect} from 'react-redux'
+import {updateRide } from '../actions/rideActions'
 
 
 const useStyles = makeStyles({
@@ -30,8 +31,18 @@ const useStyles = makeStyles({
     },
   });
 
-  const DriverRidePickUp = ({ride}) => {
+  const DriverRidePickUp = ({ride, updateRide}) => {
       const classes = useStyles
+
+      const handleChange = event => {
+        const {name, value } = event.target
+        const updatedFromInfo = {
+            ...ride,
+            [name]: value
+        }
+        updateRide(updatedFromInfo)
+    }
+
 
       return (
         <Card className={classes.root} variant="outlined">
@@ -63,8 +74,8 @@ const useStyles = makeStyles({
         <CardActions>
           <Container>
               <form>
-                <RadioGroup aria-label="Picked up?" name="gender1" >
-                    <FormControlLabel value="female" control={<Radio />} label="Picked up?" />
+                <RadioGroup aria-label="Picked up?" name="initial_pickup" onChange={handleChange}>
+                    <FormControlLabel value={ride.attributes.initial_pickup} control={<Radio />} label="Picked up?" />
                 </RadioGroup>
                 <Button
                     type="submit"
@@ -89,4 +100,4 @@ const useStyles = makeStyles({
       </Card>
       )
   }
-  export default DriverRidePickUp
+  export default connect(null, {updateRide})(DriverRidePickUp)
