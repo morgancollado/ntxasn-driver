@@ -31,16 +31,16 @@ const useStyles = makeStyles({
     },
   });
 
-  const DriverRidePickUp = ({ride, updateRide}) => {
+  const DriverRidePickUp = ({ride, updateRide, history}) => {
       const classes = useStyles
 
       const handleChange = event => {
         const {name, value } = event.target
-        const updatedFromInfo = {
+        const updatedFormInfo = {
             ...ride,
             [name]: value
         }
-        updateRide(updatedFromInfo)
+        updateRide(updatedFormInfo, history)
     }
 
 
