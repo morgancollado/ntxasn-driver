@@ -7,11 +7,12 @@ export const updateRideConfirm = (ride) => {
 }
 
 export const updateRide= (rideData, history) => {
+    console.log(rideData)
     return dispatch => {
         const info = {
             ride: rideData
         }
-        return fetch(`http://localhost:3000/api/v1/rides/${rideData.rideId}`, {
+        return fetch(`http://localhost:3000/api/v1/rides/${rideData.id}`, {
             credentials: "include",
             method: "PATCH",
             headers: {
