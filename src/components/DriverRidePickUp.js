@@ -3,9 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom'
 import Container from '@material-ui/core/Container';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
@@ -35,10 +33,10 @@ const useStyles = makeStyles({
       const classes = useStyles
 
       const handleChange = event => {
-        const {name, value } = event.target
+        const {name, checked } = event.target
         const updatedFormInfo = {
             ...ride,
-            [name]: value
+            [name]: checked
         }
         updateRide(updatedFormInfo, history)
     }
@@ -77,25 +75,11 @@ const useStyles = makeStyles({
                 <RadioGroup aria-label="Picked up?" name="initial_pickup" onChange={handleChange}>
                     <FormControlLabel value={ride.attributes.initial_pickup} control={<Radio />} label="Picked up?" />
                 </RadioGroup>
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                >
-                    Submit
-                </Button>
+                
 
               </form>
 
           </Container>
-          <Link to={`/rides/${ride.id}/initialpickup`}>
-            <Button> 
-              Please click here after you have picked up the client.
-            </Button>
-          </Link>
-  
         </CardActions>
       </Card>
       )
