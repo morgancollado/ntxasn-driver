@@ -31,9 +31,18 @@ class App extends Component {
             const ride = rides.find(ride => ride.id === props.match.params.id)
             return <DriverRidePickUp ride={ride} {...props}/>
          }}/>
-         <Route exact path='/rides/:id/clinicdropoff' component={DriverRideClinicDropOff}/>
-         <Route exact path='/rides/:id/clinicpickup' component={DriverRideClinicPickup}/>
-         <Route exact path='/rides/:id/finaldropoff' component={DriverRideFinalDropOff}/>
+         <Route exact path='/rides/:id/clinicdropoff' render={(props) => {
+            const ride = rides.find(ride => ride.id === props.match.params.id)
+            return <DriverRideClinicDropOff ride={ride} {...props}/>
+         }}/>
+         <Route exact path='/rides/:id/clinicpickup' render={(props) => {
+            const ride = rides.find(ride => ride.id === props.match.params.id)
+            return <DriverRideClinicPickup ride={ride} {...props}/>
+         }}/>
+         <Route exact path='/rides/:id/finaldropoff' render={(props) => {
+            const ride = rides.find(ride => ride.id === props.match.params.id)
+            return <DriverRideFinalDropOff ride={ride} {...props}/>
+         }}/>
 
        </Switch>
 
