@@ -3,8 +3,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {connect} from 'react-redux'
+import {updateRide } from '../actions/rideActions'
+import Container from '@material-ui/core/Container';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+
 
 const useStyles = makeStyles({
     root: {
@@ -23,13 +30,58 @@ const useStyles = makeStyles({
     },
   });
 
-  const DriverRideClinicDropOff = ({ride}) => {
+  const DriverRideClinicDropOff = ({ride, history}) => {
       const classes = useStyles
 
+      const handleChange = event => {
+        const {name, checked } = event.target
+        const updatedFormInfo = {
+            ...ride,
+            [name]: checked
+        }
+        updateRide(updatedFormInfo, history)
+    }
+
       return (
-          <div>
-              check in here plz
-          </div>
+        <Card className={classes.root} variant="outlined">
+        <CardContent>
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
+            Clinic Drop Off
+          </Typography>
+          <Typography variant="h5" component="h2">
+          Appointment Date and Time: {ride.attributes.date_time}
+          </Typography>
+          <Typography className={classes.pos} color="textSecondary">
+          Appointment Type: {ride.attributes.appointment_type}
+          </Typography>
+          <Typography variant="body2" component="p">
+          Location From: {ride.attributes.location_from}
+            <br />
+            Location To: {ride.attributes.location_to}
+          </Typography>
+          <Typography variant="body2" component="p">
+          Passenger: {ride.attributes.passenger ? ride.attributes.passenger.name : "Your Driver information will appear here once a driver is assigned"} 
+            <br />
+            Phone Number: {ride.attributes.passenger ? ride.attributes.passenger.phone_number: "Your Driver information will appear here once a driver is assigned"}
+          </Typography>
+          <Typography variant="body2" component="p">
+        
+            Email: {ride.attributes.passenger ? ride.attributes.passenger.email : "Your Driver information will appear here once a driver is assigned"}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Container>
+              <form>
+                <RadioGroup aria-label="Dropped off?" name="clinic_dropoff" onChange={handleChange}>
+                    <FormControlLabel value={ride.attributes.drop} control={<Radio />} label="Dropped off?" />
+                </RadioGroup>
+                
+
+              </form>
+
+          </Container>
+        </CardActions>
+      </Card>
       )
   }
-  export default DriverRideClinicDropOff
+  export default connect(null, {updateRide})(DriverRideClinicDropOff)
