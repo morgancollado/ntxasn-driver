@@ -10,9 +10,14 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import {connect} from 'react-redux'
 import {updateRide } from '../actions/rideActions'
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import { Input } from '@material-ui/core';
 
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
       minWidth: 275,
     },
@@ -27,16 +32,23 @@ const useStyles = makeStyles({
     pos: {
       marginBottom: 12,
     },
-  });
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    }
+  }));
 
   const DriverRidePickUp = ({ride, updateRide, history}) => {
       const classes = useStyles
 
       const handleChange = event => {
-        const {name, checked } = event.target
+        const {name, value } = event.target
         const updatedFormInfo = {
             ...ride,
-            [name]: checked
+            [name]: value
         }
         updateRide(updatedFormInfo, history)
     }
@@ -46,7 +58,7 @@ const useStyles = makeStyles({
         <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-            My Driver Rides
+            Initial Pickup
           </Typography>
           <Typography variant="h5" component="h2">
           Appointment Date and Time: {ride.attributes.date_time}
@@ -70,14 +82,17 @@ const useStyles = makeStyles({
           </Typography>
         </CardContent>
         <CardActions>
-          <Container>
-              <form>
-                <RadioGroup aria-label="Picked up?" name="initial_pickup" onChange={handleChange}>
-                    <FormControlLabel value={ride.attributes.initial_pickup} control={<Radio />} label="Picked up?" />
-                </RadioGroup>
-                
+          <Container >
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">Ride Status</InputLabel>
+              <Select
+              name="stage"
+              onChange={handleChange}
+              >
+                <MenuItem value="clinic_dropoff">Clinic Dropoff</MenuItem>
 
-              </form>
+              </Select>
+            </FormControl>
 
           </Container>
         </CardActions>
