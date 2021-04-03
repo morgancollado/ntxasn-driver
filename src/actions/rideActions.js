@@ -26,7 +26,7 @@ export const updateRide= (rideData, history) => {
                 alert(resp.error)
             } else {
                 dispatch(updateRideConfirm(resp.data))
-                history.push(`/rides/${rideData.id}/clinicdropoff`)
+                history.push(`/`)
             }
         })
 
