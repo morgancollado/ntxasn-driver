@@ -27,16 +27,59 @@ const useStyles = makeStyles({
 });
 
 const MyDriverRide = ({ride}) => {
+  console.log(ride)
     
 
   const classes = useStyles();
+
+  let link
+  switch(ride.initial_pickup){
+    case true:
+      return null
+    case false:
+      return link = <Link to={`/rides/${ride.id}/initialpickup`}>
+                      <Button>
+                          Please click here once you have begun this ride.
+                       </Button>
+                     </Link>
+      default:
+      return null
+  }
+
+  // if (ride.initial_pickup === false){
+  //   link = <Link to={`/rides/${ride.id}/initialpickup`}>
+  //   <Button>
+  //     Please click here once you have begun this ride.
+  //   </Button>
+  // </Link>
+  // }else if (ride.clinic_dropoff === false){
+  //   link = <Link to={`/rides/${ride.id}/clinicdropoff`}>
+  //   <Button>
+  //     Please click here once you have dropped the patient off at the clinic.
+  //   </Button>
+  // </Link>
+  // }else if (ride.clinic_pickup === false){
+  //   link = <Link to={`/rides/${ride.id}/clinicpickup`}>
+  //   <Button>
+  //     Please click here once you have picked the patient up from the clinic.
+  //   </Button>
+  // </Link>
+  // } else if (ride.final_dropoff === false){
+  //   link = <Link to={`/rides/${ride.id}/finaldropoff`}>
+  //   <Button>
+  //     Please click here once you have ended this ride.
+  //   </Button>
+  // </Link>
+  // }
+
+
 
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          My Driver Rides
+          My Driver Ride
         </Typography>
         <Typography variant="h5" component="h2">
         Appointment Date and Time: {ride.attributes.date_time}
@@ -61,11 +104,8 @@ const MyDriverRide = ({ride}) => {
       </CardContent>
       <CardActions>
         <Button size="small">If you cannot make this ride, please contact our Hotline Coordinator</Button>
-        <Link to={`/rides/${ride.id}/initialpickup`}>
-          <Button> 
-            Please click here once you have begun this ride.
-          </Button>
-        </Link>
+        {link}
+     
 
       </CardActions>
     </Card>
