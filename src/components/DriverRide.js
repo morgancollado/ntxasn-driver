@@ -32,19 +32,44 @@ const MyDriverRide = ({ride}) => {
 
   const classes = useStyles();
 
-  let link
-  switch(ride.initial_pickup){
-    case true:
-      return null
-    case false:
-      return link = <Link to={`/rides/${ride.id}/initialpickup`}>
-                      <Button>
-                          Please click here once you have begun this ride.
-                       </Button>
-                     </Link>
+  const getRoute= () =>{
+
+    switch( false ){
+      case (ride.attributes.clinic_pickup):
+      return `/rides/${ride.id}/clinicpickup`
+      case (ride.attributes.clinic_dropoff):
+        return `/rides/${ride.id}/clinicdropoff`
+      case (ride.attributes.final_dropoff):
+        return `/rides/${ride.id}/finaldropoff`
       default:
-      return null
+        return `/rides/${ride.id}/initialpickup`
+    }
   }
+
+  const rideStatus = () => {
+    switch(true){
+      case ride.attributes.clinic_pickup:
+      return "Your rider has been dropped off at the clinic"
+      case ride.attributes.clinic_dropoff:
+        return "Your rider has been picked up from the clinic"
+      case ride.attributes.final_dropoff:
+        return "Your ride has been completed."
+      default:
+      return "Not started"
+    }
+  }
+  // switch(ride.initial_pickup){
+  //   case true:
+  //     return null
+  //   case false:
+  //     return link = <Link to={`/rides/${ride.id}/initialpickup`}>
+  //                     <Button>
+  //                         Please click here once you have begun this ride.
+  //                      </Button>
+  //                    </Link>
+  //     default:
+  //     return null
+  // }
 
   // if (ride.initial_pickup === false){
   //   link = <Link to={`/rides/${ride.id}/initialpickup`}>
@@ -75,11 +100,16 @@ const MyDriverRide = ({ride}) => {
 
 
 
+
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           My Driver Ride
+        </Typography>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
+          {`Ride Status: ${rideStatus()}`}
         </Typography>
         <Typography variant="h5" component="h2">
         Appointment Date and Time: {ride.attributes.date_time}
@@ -104,8 +134,13 @@ const MyDriverRide = ({ride}) => {
       </CardContent>
       <CardActions>
         <Button size="small">If you cannot make this ride, please contact our Hotline Coordinator</Button>
-        {link}
-     
+        <Link to={getRoute()}>
+          <Button>
+            Please click here to check in through your ride.
+          </Button>
+        </Link>
+
+
 
       </CardActions>
     </Card>
