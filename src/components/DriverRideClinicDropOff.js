@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     },
   });
 
-  const DriverRideClinicDropOff = ({ride, history}) => {
+  const DriverRideClinicDropOff = ({ride, history, updateRide}) => {
       const classes = useStyles
 
       const handleChange = event => {

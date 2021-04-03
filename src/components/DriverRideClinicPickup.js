@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     },
   });
 
-  const DriverRideClinicPickup = ({ride, history}) => {
+  const DriverRideClinicPickup = ({ride, history, updateRide}) => {
       const classes = useStyles
       const handleChange = event => {
         const {name, checked } = event.target

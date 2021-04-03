@@ -28,7 +28,7 @@ const useStyles = makeStyles({
     },
   });
 
-  const DriverRideFinalDropOff = ({ride, history}) => {
+  const DriverRideFinalDropOff = ({ride, history, updateRide}) => {
       const classes = useStyles
       const handleChange = event => {
         const {name, checked } = event.target
