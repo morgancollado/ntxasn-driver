@@ -34,12 +34,12 @@ const MyDriverRide = ({ride}) => {
 
   const getRoute= () =>{
 
-    switch( false ){
-      case (ride.attributes.clinic_pickup):
+    switch( true ){
+      case (ride.attributes.clinic_pickup === true):
       return `/rides/${ride.id}/clinicpickup`
-      case (ride.attributes.clinic_dropoff):
+      case (ride.attributes.clinic_dropoff === true):
         return `/rides/${ride.id}/clinicdropoff`
-      case (ride.attributes.final_dropoff):
+      case (ride.attributes.final_dropoff === true):
         return `/rides/${ride.id}/finaldropoff`
       default:
         return `/rides/${ride.id}/initialpickup`
