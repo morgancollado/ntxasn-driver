@@ -54,11 +54,12 @@ const StyledLoginForm= ({loginformData, updateLoginForm, login, history}) => {
   
   const handleChange = event => {
     const {name, value } = event.target
-    const updatedFromInfo = {
+    const updatedFormInfo = {
         ...loginformData,
         [name]: value
     }
-    updateLoginForm(updatedFromInfo)
+    
+    updateLoginForm(updatedFormInfo)
 }
 
 const handleSubmit = event =>{
