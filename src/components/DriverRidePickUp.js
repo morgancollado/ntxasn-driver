@@ -16,6 +16,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import { Input } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import { Formik, Field, Form, useField, useFormikContext } from 'formik';
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
     }
   }));
 
@@ -45,12 +52,21 @@ const useStyles = makeStyles((theme) => ({
       const classes = useStyles
 
       const handleChange = event => {
+
         const {name, value } = event.target
+        console.log(name)
+        console.log(value)
         const updatedFormInfo = {
             ...ride,
             [name]: value
         }
         updateRide(updatedFormInfo, history)
+    }
+
+    const handleSubmit = event => {
+      console.log("are we even in this???")
+      event.preventDefault()
+      handleChange(event)
     }
 
 
@@ -83,17 +99,28 @@ const useStyles = makeStyles((theme) => ({
         </CardContent>
         <CardActions>
           <Container >
+          <form onSubmit={handleSubmit}>
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-simple-select-label">Ride Status</InputLabel>
-              <Select
-              name="stage"
-              onChange={handleChange}
-              >
-                <MenuItem value="clinic_dropoff">Clinic Dropoff</MenuItem>
-
+              <Select>
+                <MenuItem
+                  name="stage"
+                  onChange={handleChange}
+                  value="clinic_dropoff"
+                >
+                  Clinic Dropoff
+                </MenuItem>
               </Select>
+              <Button
+                type="submit"
+                color="primary"
+                variant="contained"
+                className={classes.submit}
+              >
+                Submit
+              </Button>
             </FormControl>
-
+            </form>
           </Container>
         </CardActions>
       </Card>
