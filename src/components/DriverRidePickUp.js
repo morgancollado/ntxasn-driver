@@ -99,6 +99,24 @@ const useStyles = makeStyles((theme) => ({
         </CardContent>
         <CardActions>
           <Container >
+            <Formik
+              initialValues={{
+                stage: `${ride.stage}`
+              }}
+              onSubmit={(values) => {
+                updateRide(values)
+              }}
+            >
+              <Form>
+                <label htmlFor="stage">Stage</label>
+                <Field as='select' name='stage'>
+                  <option value="clinic_dropoff">Clinic Dropoff</option>
+                  <option value="clinic_pickup">Clinic Pickup</option>
+                  <option value="final_dropoff">Final Dropoff</option>
+                </Field>
+                <button type="submit">Submit</button>
+              </Form>
+            </Formik>
           <form onSubmit={handleSubmit}>
             <FormControl className={classes.formControl}>
               <InputLabel id="demo-simple-select-label">Ride Status</InputLabel>
